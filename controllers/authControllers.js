@@ -23,13 +23,23 @@ register : async (req, res) => {
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
     // create new user
-    const user = new User({name: req.body.name, email: req.body.email, password:  hashPassword});
+    const user = new User({name: req.body.name, email: req.body.email, password:  hashPassword, role: req.body.role});
     try {
         const savedUser = await user.save();
         res.send({ user: user._id });
     } catch (err) {
         res.status(400).send(err);
     }
+
+       // Permission
+   const permission = await User.findOne({role : req.body.role});
+  
+   if( permission === 'Docker')
+   {
+    return res.status(400).json({message: "Page Docker"});
+   } else {
+    res.send({message: "Page Cheffeur"});
+   }
 },
 
 login : async (req, res) => {
@@ -53,6 +63,7 @@ login : async (req, res) => {
      //Create and assign token
    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
    res.header('auth-token', token).send(token);
+
 },
 
 // Get all users 
@@ -92,7 +103,7 @@ update :  async(req, res) => {
 
     res.json({
         message: "user updated successfully",
-        data: customer
+        // data: customer
     });
 }, 
 

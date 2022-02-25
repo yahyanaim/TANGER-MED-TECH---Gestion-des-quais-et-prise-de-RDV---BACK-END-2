@@ -14,21 +14,20 @@ const reservationSchema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "user",
+    ref: "User",
   },
 
   ship: 
     {
       type: Schema.Types.ObjectId,
-      ref: "ship",
-    },
-  
-  quay: 
-    {
-      type: Schema.Types.ObjectId,
-      ref: "quay",
+      ref: "Ship",
     },
 
+    dock: 
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Docks",
+    },
 });
 
 module.exports = model("Reservation",reservationSchema);
