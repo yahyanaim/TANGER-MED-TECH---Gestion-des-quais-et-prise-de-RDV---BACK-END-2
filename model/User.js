@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
         max: 1024,
         min: 6
     },
+
+    role: {
+        type: String,
+        require: true,
+        enum : ['Docker', 'Cheffeur'],
+    }
 })
 
 module.exports = mongoose.model('User', userSchema)
