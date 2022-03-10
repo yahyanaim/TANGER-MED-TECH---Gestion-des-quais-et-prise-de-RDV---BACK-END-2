@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-
-const shipOwnerSchema = new mongoose.Schema({
+const {Schema, model} = require("mongoose");
+const shipOwnerSchema = new Schema({
   name: {
     type: String,
     required: [true, "Please fill this field!"],
@@ -23,6 +22,4 @@ const shipOwnerSchema = new mongoose.Schema({
   },
 });
 
-const ShipOwner = mongoose.model("shipOwner", shipOwnerSchema);
-
-module.exports = ShipOwner;
+module.exports = model("shipOwner", shipOwnerSchema);

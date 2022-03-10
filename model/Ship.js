@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-
-const shipSchema = new mongoose.Schema({
+const {Schema, model} = require("mongoose");
+const shipSchema = new Schema({
   name: {
     type: String,
     required: [true, "Please fill this field!"],
@@ -31,7 +30,5 @@ const shipSchema = new mongoose.Schema({
     },
 
 });
+const Ship = model("ship", shipSchema);
 
-const Ship = mongoose.model("ship", shipSchema);
-
-module.exports = Ship;

@@ -11,7 +11,7 @@ module.exports = {
 // Get one Categorie
     getById: async (req, res) => {
         const categorie = await User.findById(req.params.id);
-        if (!user) {
+        if (!categorie) {
             return res.status(404).json({message: "categorie Not Found"});
         }
         res.json(categorie);

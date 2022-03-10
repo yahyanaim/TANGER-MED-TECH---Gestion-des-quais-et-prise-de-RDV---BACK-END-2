@@ -8,23 +8,23 @@ module.exports = {
         res.json({data: reservations});
     },
 
-
+   /* GET ONE RESERVATION */
     getById: async (req, res) => {
-        const reservation = await User.findById(req.params.id);
-        if (!user) {
+        const reservation = await Reservation.findById(req.params.id);
+        if (!reservation) {
             return res.status(404).json({message: "user Not Found"});
         }
         res.json(reservation);
     },
 
-
+/* CREAT RESRVATION */
     create: async (req, res) => {
         const reservation = new Reservation(req.body);
         await reservation.save();
         res.status(201).json({message: "reservations created successfully", data: reservation});
     },
 
-
+/* UPDATE RESRVATION */
     update: async (req, res) => {
         const reservation = await Reservation.findByIdAndUpdate(req.params.id, req.body);
         if (! reservation) {
@@ -33,7 +33,7 @@ module.exports = {
         res.json({message: "reservation updated successfully", data: reservation});
     },
 
-
+/* DELETE RESRVATION */
     destroy: async (req, res) => {
         const reservation = await Reservation.findByIdAndDelete(req.params.id);
         if (! reservation) {
