@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
 const categorieSchema = new mongoose.Schema({
+
   name: {
     type: String,
     required: [true, "Please fill this field!"],
@@ -13,5 +13,4 @@ const categorieSchema = new mongoose.Schema({
 });
 
 const Categorie = mongoose.model("categorie", categorieSchema);
-
 module.exports = Categorie;

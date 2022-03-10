@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
-
-const containerSchema = new mongoose.Schema({
+const {Schema, model} = require("mongoose");
+const containerSchema = new Schema({
   weight: {
     type: Number,
     required: [true, "Please fill this field!"],
@@ -29,19 +28,14 @@ const containerSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please fill this field!"],
   },
-fee: 
-    {
-      type: Schema.Types.ObjectId,
-      ref: "fee",
-    },
-  categories: 
-    {
-      type: Schema.Types.ObjectId,
-      ref: "categorie",
-    },
-  
+fee:{
+    type: Schema.Types.ObjectId,
+    ref: "Fee",
+  },
+categories: {
+  type: Schema.Types.ObjectId,
+  ref: "Categorie",
+},
 });
+module.exports = model("container", containerSchema);
 
-const Container = mongoose.model("container", containerSchema);
-
-module.exports = Container;
